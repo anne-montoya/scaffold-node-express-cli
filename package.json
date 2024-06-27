@@ -16,7 +16,9 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
+    "execa": "^9.3.0",
     "figlet": "^1.7.0",
-    "inquirer": "^9.2.23"
+    "inquirer": "^9.2.23",
+    "ncp": "^2.0.0"
   }
 }
