@@ -7,10 +7,11 @@ import figlet from 'figlet'
 import { program } from 'commander'
 import inquirer from 'inquirer'
 import ncp from 'ncp'
-import { execa } from 'execa'
+import { exec as nativeExec } from 'node:child_process'
 
 const access = promisify(fs.access)
 const copy = promisify(ncp)
+const exec = promisify(nativeExec)
 
 console.log(
     chalk.green(figlet.textSync('Node-Express Scaffold', { horizontalLayout: 'full'} ))
@@ -50,6 +51,7 @@ if (visiblePrompts.length) {
             console.log(parameters)
             await copyTemplate(parameters)
             // await cleanTemplateFiles(parameters)
+            await cleanTemplateFiles(parameters)
             console.log('%s Project ready', chalk.green.bold('DONE'))
             // replace all occurance of name and port inside a folder
         })
@@ -77,7 +79,7 @@ async function copyTemplate(options) {
         process.exit(1)
     }
 
-    await execa('mkdir', [options.name], { cwd: process.cwd() })
+    await exec(`mkdir ${options.name}`)
     await copyTemplateFiles(dir)
 }
 
@@ -89,20 +91,8 @@ async function copyTemplateFiles(options) {
 }
 
 async function cleanTemplateFiles(options) {
-    console.log('CWD: ',process.cwd())
-    // const result = await execa(`find ${options.name} -type f -exec sed -i '' -e "s/"#{name}"/"${options.name}"/g" {} +`)
-    const result = await execa(`find * -type f -exec sed -i '' -e "s/"#{name}"/"${options.name}"/g" {} +`, {cwd: path.resolve(process.cwd(), options.name)} )
-    if (result.failed) {
-        return Promise.reject(new Error('Failed to set project name'))
-    }
-}
-async function initGit(options) {
-    const result = await execa('git', ['init'], {
-        cwd: options.targetDirectory
-    })
-    if (result.failed) {
-        return Promise.reject(new Error('Failed to initialize git'))
-    }
-
-    return
+    return Promise.all([
+        exec(`find ${options.name} -type f -exec sed -i '' -e "s/"#{name}"/"${options.name}"/g" {} +`),
+        exec(`find ${options.name} -type f -exec sed -i '' -e "s/"#{port}"/"${options.port}"/g" {} +`)
+    ]) 
 }
