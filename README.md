@@ -1,7 +1,7 @@
 # scaffold-node-express-cli
 A cli to create a bare express app
 
-![alt text](assets/image.png)
+![alt text](https://github.com/anne-montoya/scaffold-node-express-cli/blob/main/assets/image.png)
 
 ## How to use
 
