@@ -12,7 +12,7 @@ export async function createProject(options) {
         await exec(`mkdir ${options.name}`)
         await copyTemplate(options)
         await cleanTemplate(options)
-        console.log(`%s Project ready. Run via 'npm start'`, chalk.green.bold('DONE'))
+        console.log(`%s Project ready. Install packages via %s. Run via %s`, chalk.green.bold('DONE'), chalk.gray.bold('npm install'), chalk.gray.bold('npm run'))
     } catch(e) {
         console.error(`%s Creating project. Please delete project dir 'rm -rf ${options.name}'`, chalk.red.bold('ERROR'))
     }

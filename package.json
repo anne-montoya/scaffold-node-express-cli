@@ -1,7 +1,7 @@
 {
   "name": "@akrm/scaffold-node-express-cli",
   "description": "A cli to create a bare express app",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": ".bin/index.js",
   "type": "module",
   "bin": {
@@ -9,6 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anne-montoya/scaffold-node-express-cli.git"
   },
   "keywords": [],
   "author": "Anne Montoya",
