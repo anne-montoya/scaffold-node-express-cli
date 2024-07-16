@@ -40,8 +40,6 @@ function copyTemplateFiles({ templateDirectory, targetDirectory }) {
 }
 
 async function cleanTemplate(options) {
-    return Promise.all([
-        exec(`find ${options.name} -type f -exec sed -i '' -e "s/"#{name}"/"${options.name}"/g" {} +`),
-        exec(`find ${options.name} -type f -exec sed -i '' -e "s/"#{port}"/"${options.port}"/g" {} +`)
-    ]) 
+    await exec(`find ${options.name} -type f -exec sed -i '' -e "s/"#{name}"/"${options.name}"/g" {} +`)
+    await exec(`find ${options.name} -type f -exec sed -i '' -e "s/"#{port}"/"${options.port}"/g" {} +`)
 }
