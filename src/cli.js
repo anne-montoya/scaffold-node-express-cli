@@ -14,7 +14,7 @@ export async function cli() {
 
 function displayCLITitle() {
     console.log(
-        chalk.green(figlet.textSync('Node-Express Scaffold', { horizontalLayout: 'full'} ))
+        chalk.green(figlet.textSync('Node Express Scaffold', { width: 70} ))
     )
 }
 
