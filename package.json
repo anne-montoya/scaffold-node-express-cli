@@ -1,7 +1,7 @@
 {
   "name": "@akrm/scaffold-node-express-cli",
   "description": "A cli to create a bare express app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": ".bin/index.js",
   "type": "module",
   "bin": {
